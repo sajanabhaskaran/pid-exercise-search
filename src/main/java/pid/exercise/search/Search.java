@@ -11,17 +11,59 @@ public class Search {
 
     public static int linearSearch(int[] array, int value) {
         // TODO Implement linear search
-        return 0;
+        for(int i=0;i<array.length;i++){
+            if(array[i] == value){
+                return i;
+            }
+        }
+        return -1;
+
     }
 
     public static int binarySearch(int[] array, int value) {
         // TODO Implement iterative binary search
-        return 0;
+        int begin=0;
+        int last=array.length -1;
+        int mid=0;
+        while(begin<=last){
+            mid= (begin+last)/2;
+            if (array[mid]<value){
+                begin=mid+1;
+            }
+            else if (array[mid]>value){
+                last=mid-1;
+            }
+            else{
+                return mid;
+            }
+        }
+        return -1;
     }
 
     public static int binarySearchRecursive(int[] array, int value) {
         // TODO Implement recursive binary search
-        return 0;
+        return binarySearchHelper(array,0,array.length-1,value);
+
+    }
+
+    private static int binarySearchHelper(int[] array, int begin, int last, int value) {
+        int middle=(begin+last)/2;
+        if (last<begin){
+            return -1;
+        }
+        if(value== array[middle]){
+            return middle;
+        }
+        else if (value<array[middle]){
+            last=middle-1;
+            int result=binarySearchHelper(array,begin,last,value);
+            return result;
+        }
+        else {
+            begin=middle+1;
+            return binarySearchHelper(array,begin,last,value);
+        }
+
     }
 
 }
